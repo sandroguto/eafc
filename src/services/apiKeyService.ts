@@ -1,6 +1,13 @@
 import { v4 as uuidv4 } from 'uuid';
 import { ApiKey, SubscriptionTier } from '../models/types';
 
+/**
+ * API Key Service
+ * 
+ * NOTE: This implementation uses in-memory storage for demonstration purposes.
+ * For production use, implement persistent storage with a database (PostgreSQL, MongoDB, etc.)
+ * to prevent data loss on server restart.
+ */
 class ApiKeyService {
   private apiKeys: Map<string, ApiKey> = new Map();
 

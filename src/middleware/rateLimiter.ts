@@ -1,5 +1,5 @@
 import rateLimit from 'express-rate-limit';
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { SUBSCRIPTION_PLANS } from '../models/subscriptions';
 import { SubscriptionTier } from '../models/types';
 import { AuthenticatedRequest } from './auth';
@@ -45,7 +45,7 @@ export const createRateLimiter = (tier: SubscriptionTier) => {
 export const dynamicRateLimiter = (
   req: AuthenticatedRequest,
   res: Response,
-  next: any
+  next: NextFunction
 ) => {
   const tier = req.apiKey?.tier || SubscriptionTier.FREE;
   const limiter = createRateLimiter(tier);

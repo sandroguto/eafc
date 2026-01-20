@@ -20,7 +20,7 @@ router.get('/plans', (req: Request, res: Response) => {
 });
 
 // Generate a free API key
-router.post('/subscribe/free', (req: Request, res: Response) => {
+router.post('/subscribe/free', (req: Request, res: Response): void => {
   const { userId } = req.body;
 
   if (!userId) {
@@ -43,7 +43,7 @@ router.post('/subscribe/free', (req: Request, res: Response) => {
 });
 
 // Create checkout session for paid plans
-router.post('/subscribe/checkout', async (req: Request, res: Response) => {
+router.post('/subscribe/checkout', async (req: Request, res: Response): Promise<void> => {
   const { userId, tier } = req.body;
 
   if (!userId || !tier) {
@@ -92,7 +92,7 @@ router.post('/subscribe/checkout', async (req: Request, res: Response) => {
 });
 
 // Stripe webhook endpoint
-router.post('/webhook', async (req: Request, res: Response) => {
+router.post('/webhook', async (req: Request, res: Response): Promise<void> => {
   const signature = req.headers['stripe-signature'] as string;
 
   try {

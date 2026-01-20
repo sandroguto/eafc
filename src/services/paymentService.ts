@@ -69,7 +69,9 @@ class PaymentService {
           break;
       }
     } catch (err) {
-      throw new Error(`Webhook Error: ${err}`);
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      console.error('Webhook processing error:', errorMessage);
+      throw new Error(`Webhook Error: ${errorMessage}`);
     }
   }
 
